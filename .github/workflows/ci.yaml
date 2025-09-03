@@ -13,18 +13,13 @@ env:
 jobs:
   build:
     name: Build
-    env:
-      DB_NAME: falcondb
-      DB_HOST: postgres
-      DB_URL: 'postgresql://postgres:password@postgres:5432/falcondb?connection_limit=10&pool_timeout=20'
-      DB_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
-      DB_USERNAME: ${{ vars.POSTGRES_USERNAME }}
-      DB_PORT: 5432
-      GO_ENV: development
     services:
       postgres:
         image: postgres
+        ports:
+          - 5432:5432
         env:
+          POSTGRES_HOST: localhost
           POSTGRES_DB: ${{env.DB_NAME}}
           POSTGRES_USER: ${{ vars.POSTGRES_USERNAME }}
           POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
@@ -33,6 +28,13 @@ jobs:
           --health-interval=10s 
           --health-timeout=5s
           --health-retries=5
+    env:
+      DB_NAME: falcondb
+      DB_HOST: postgres
+      DB_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+      DB_USERNAME: ${{ vars.POSTGRES_USERNAME }}
+      DB_PORT: 5432
+      GO_ENV: development
     runs-on: ubuntu-latest
     steps:
       - name: checkout
