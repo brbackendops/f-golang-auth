@@ -55,6 +55,7 @@ jobs:
         run: |
           go run main.go &
           echo $! > server.pid
+          sleep 5
           curl http://127.0.0.1:3000/health
 
       - name: stop app
