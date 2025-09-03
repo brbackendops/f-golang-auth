@@ -35,7 +35,7 @@ jobs:
       DB_USERNAME: ${{ vars.POSTGRES_USERNAME }}
       DB_PORT: 5432
       DB_SSLMODE: disable
-      GO_ENV: development
+      GO_ENV: test
     runs-on: ubuntu-latest
     steps:
       - name: checkout
