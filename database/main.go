@@ -34,8 +34,6 @@ func Connect() *sqlx.DB {
 	tx.MustExec(models.Schema)
 	tx.Commit()
 
-	defer tx.Rollback()
-
 	DB = db
 	return db
 }
