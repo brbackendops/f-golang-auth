@@ -57,9 +57,9 @@ jobs:
       - name: run & check
         run: |
           go build 
-          .\falcon.exe &
+          ./falcon &
           echo $! > server.pid
-          sleep 5
+          sleep 2
           curl http://127.0.0.1:3000/health
 
       - name: stop app
