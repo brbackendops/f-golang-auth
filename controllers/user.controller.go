@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"falcon/database/types"
 	"falcon/utils"
-	"fmt"
 
 	"github.com/gofiber/fiber/v2"
 
@@ -58,7 +57,7 @@ func (uc *UserController) RegisterHandler(c *fiber.Ctx) error {
 func (uc *UserController) LoginHandler(c *fiber.Ctx) error {
 	var userData types.UserLogin
 
-	fmt.Println("Hello....from login ")
+	// fmt.Println("Hello....from login ")
 	data := c.Body()
 	if err := json.Unmarshal(data, &userData); err != nil {
 		return c.Status(500).JSON(&fiber.Map{
@@ -74,7 +73,7 @@ func (uc *UserController) LoginHandler(c *fiber.Ctx) error {
 		if err, ok := err.(*utils.ModelDoesNotExistsError); ok {
 			return c.Status(err.StatusCode).JSON(&fiber.Map{
 				"status": "error",
-				"error":  err.Error(),
+				"error":  "Invalid email or password.",
 			})
 		}
 
