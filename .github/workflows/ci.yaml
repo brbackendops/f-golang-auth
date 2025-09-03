@@ -55,9 +55,7 @@ jobs:
         run: |
           go run main.go &
           echo $! > server.pid
-      
-      - name: Health Check
-        run: curl http://localhost:3000/health
+          curl http://127.0.0.1:3000/health
 
       - name: stop app
         run: |
