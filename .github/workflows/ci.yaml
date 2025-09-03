@@ -30,10 +30,11 @@ jobs:
           --health-retries=5
     env:
       DB_NAME: falcondb
-      DB_HOST: postgres
+      DB_HOST: localhost
       DB_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
       DB_USERNAME: ${{ vars.POSTGRES_USERNAME }}
       DB_PORT: 5432
+      DB_SSLMODE: disable
       GO_ENV: development
     runs-on: ubuntu-latest
     steps:
